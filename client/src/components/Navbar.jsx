@@ -19,6 +19,7 @@ const Navbar = () => {
           <Link to="/register">Register</Link>
         </>
       )}
+      {user && <Link to="/create">Create Place</Link>}
     </nav>
   );
 };

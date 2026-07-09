@@ -9,6 +9,7 @@ import EditPlace from './pages/EditPlace';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './pages/pageNotFound';
+import MyPlaces from './pages/myPlaces';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/places/:id" element={<PlaceDetail />} />
         <Route path="/create" element={<CreatePlace />} />
         <Route path="/places/:id/edit" element={<EditPlace />} />
+        <Route path="/my-places" element={<MyPlaces />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -11,6 +11,7 @@ const Navbar = () => {
       {user ? (
         <>
           <span>Welcome, {user.name}</span>
+          <Link to="/my-places">My Places</Link>
           <button onClick={logout}>Logout</button>
         </>
       ) : (

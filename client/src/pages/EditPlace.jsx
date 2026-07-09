@@ -58,10 +58,14 @@ const EditPlace = () => {
                 location,
                 images: [imageUrl],
             });
-            toast.success('Place updated!');
+            toast.success('Place updated!', {
+                className: '!border-l-4 !border-l-moss',
+            });
             navigate(`/places/${id}`); // redirect after a successful edit
         } catch (err) {
-            toast.error('Failed to update place');
+            toast.error('Failed to update place', {
+                className: '!border-l-4 !border-l-terracotta',
+            });
             setError('Failed to update place');
         }
     };
@@ -69,36 +73,69 @@ const EditPlace = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type='text' placeholder='Enter Title'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required />
+        <div className="max-w-xl mx-auto px-6 py-10">
+            <h1 className="font-display text-3xl font-semibold text-ink mb-6">
+                Edit Place
+            </h1>
 
-            <textarea placeholder='Enter Description'
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <input
+                    type="text"
+                    placeholder="Enter Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                    className="border border-stone/40 rounded-lg px-4 py-2 bg-parchment focus:outline-none focus:border-moss"
+                />
 
-            <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="" disabled>Category</option>
-                <option value={'restaurant'}>Restaurant</option>
-                <option value={'hike'}>Hike</option>
-                <option value={'landmark'}>Landmark</option>
-                <option value={'activity'}>Activity</option>
-            </select>
+                <textarea
+                    placeholder="Enter Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                    rows={4}
+                    className="border border-stone/40 rounded-lg px-4 py-2 bg-parchment focus:outline-none focus:border-moss resize-none"
+                />
 
-            <input type='text' placeholder='Enter location' value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                required />
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="border border-stone/40 rounded-lg px-4 py-2 bg-parchment focus:outline-none focus:border-moss"
+                >
+                    <option value="" disabled>Category</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="hike">Hike</option>
+                    <option value="landmark">Landmark</option>
+                    <option value="activity">Activity</option>
+                </select>
 
-            <input type='url' placeholder='paste image url' value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-            />
+                <input
+                    type="text"
+                    placeholder="Enter location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    required
+                    className="border border-stone/40 rounded-lg px-4 py-2 bg-parchment focus:outline-none focus:border-moss"
+                />
 
-            {error && <p>{error}</p>}
-            <button type="submit">Edit Place</button>
-        </form>
+                <input
+                    type="url"
+                    placeholder="Paste image URL"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    className="border border-stone/40 rounded-lg px-4 py-2 bg-parchment focus:outline-none focus:border-moss"
+                />
+
+                {error && <p className="text-terracotta text-sm">{error}</p>}
+
+                <button
+                    type="submit"
+                    className="bg-moss text-parchment px-5 py-2.5 rounded-full hover:bg-moss/90 transition-colors mt-2"
+                >
+                    Save Changes
+                </button>
+            </form>
+        </div>
     );
 };
 
